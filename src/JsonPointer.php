@@ -55,6 +55,9 @@ class JsonPointer
      */
     public static function splitPath($path)
     {
+        if (substr($path, 0, 2) === '..') {
+            $path = "#/" . $path;
+        }
         $pathItems = explode('/', $path);
         $first = array_shift($pathItems);
         if ($first === '#') {
